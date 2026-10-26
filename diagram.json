@@ -1,0 +1,56 @@
+{
+    "version": 1,
+    "author": "Leonard",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+      {
+        "type": "wokwi-hc-sr04",
+        "id": "ultrasonic",
+        "top": -123.3,
+        "left": -196.1,
+        "attrs": { "distance": "13" }
+      },
+      {
+        "type": "wokwi-dht22",
+        "id": "dht",
+        "top": 77.1,
+        "left": -197.4,
+        "attrs": { "humidity": "83.5" }
+      },
+      { "type": "wokwi-relay-module", "id": "relay", "top": -120, "left": 180, "attrs": {} },
+      {
+        "type": "wokwi-led",
+        "id": "fan_led",
+        "top": -180,
+        "left": 300,
+        "attrs": { "color": "blue", "label": "Blower Fan" }
+      },
+      {
+        "type": "wokwi-neopixel-ring",
+        "id": "ring",
+        "top": 80,
+        "left": 180,
+        "attrs": { "pixels": "12" }
+      }
+    ],
+    "connections": [
+      [ "esp:5V", "ultrasonic:VCC", "red", [] ],
+      [ "esp:GND", "ultrasonic:GND", "black", [] ],
+      [ "esp:5", "ultrasonic:TRIG", "green", [] ],
+      [ "esp:18", "ultrasonic:ECHO", "blue", [] ],
+      [ "esp:3V3", "dht:VCC", "red", [] ],
+      [ "esp:GND", "dht:GND", "black", [] ],
+      [ "esp:15", "dht:SDA", "yellow", [] ],
+      [ "esp:5V", "relay:VCC", "red", [] ],
+      [ "esp:GND", "relay:GND", "black", [] ],
+      [ "esp:4", "relay:IN", "orange", [] ],
+      [ "esp:5V", "relay:COM", "red", [] ],
+      [ "relay:NO", "fan_led:A", "purple", [] ],
+      [ "esp:GND", "fan_led:C", "black", [] ],
+      [ "esp:5V", "ring:VDD", "red", [] ],
+      [ "esp:GND", "ring:VSS", "black", [] ],
+      [ "esp:13", "ring:DIN", "cyan", [] ]
+    ],
+    "dependencies": {}
+  }
